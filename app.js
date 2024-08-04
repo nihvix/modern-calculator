@@ -17,7 +17,12 @@ function addText(event) {
      item = event.target;
      text += "" + item.innerText;
      console.log(text);
-     result.innerText = text;
+     inputOperation.placeholder = text;
+}
+
+function reset(){
+     inputOperation.placeholder = 0;
+     result.innerText=0;
 }
 
 /* ========================
@@ -33,6 +38,9 @@ function DOMLoaded(event) {
           btn.addEventListener('mousedown', addText);
      }
 
+     //Listener para el botón de reset (AC)
+     let acButton=document.getElementById('ac');
+     acButton.addEventListener('mousedown', reset);
 
 }
 /* ===========================
