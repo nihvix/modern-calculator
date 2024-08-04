@@ -27,8 +27,6 @@ function addText(event) {
 function addOperation(event) {
      item = event.target;
      let lastChar = text.substring(text.length - 1);
-     console.log(lastChar);
-     console.log(isNaN(lastChar));
      if (isNaN(lastChar)) {
           backSpace();
      }
@@ -62,10 +60,8 @@ function backSpace() {
 function calculate() {
      let op = inputOperation.placeholder;
      let solution;
-     console.log(op);
      try {
           solution = eval(op);
-          console.log(solution);
           inputOperation.placeholder += '=';
           if (solution % 1 > 0) {
                result.innerText = solution.toFixed(2);
@@ -73,7 +69,6 @@ function calculate() {
                result.innerText = solution;
           }
      } catch (err) {
-          console.log(err);
           result.style.color = 'red';
           result.innerText = 'ERROR';
      }
