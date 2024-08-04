@@ -21,6 +21,7 @@ function addText(event) {
 
 /**
  * Función para añadir el texto del botón a la pantalla
+ * Si el último caracter es un signo, se establece el actual en su lugar
  * @param {Event} event 
  */
 function addOperation(event) {
@@ -28,15 +29,11 @@ function addOperation(event) {
      let lastChar = text.substring(text.length - 1);
      console.log(lastChar);
      console.log(isNaN(lastChar));
-
      if (isNaN(lastChar)) {
           backSpace();
-          text += "" + item.innerText;
-          inputOperation.placeholder = text;
-     } else {
-          text += "" + item.innerText;
-          inputOperation.placeholder = text;
      }
+     text += "" + item.innerText;
+     inputOperation.placeholder = text;
 }
 
 /**
@@ -112,7 +109,7 @@ function DOMLoaded() {
      //Evento de cálculo
      let equal = document.getElementById('equal');
      //Le quitamos el evento de añadir el texto, para que no afecte de primeras en la operación al calcular
-     equal.removeEventListener('mousedown', addText);
+     equal.removeEventListener('mousedown', addOperation);
      equal.addEventListener('mousedown', calculate);
 
 }
