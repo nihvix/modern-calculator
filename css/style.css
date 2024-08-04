@@ -4,23 +4,118 @@
 body {
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
-        background-color: #222;
+        background-color: darkslateblue;
         color: whitesmoke;
 }
 
 /* ====================
         MAIN
    ==================== */
-
+#mainContainer {
+        padding: 10px;
+        background-color: #222;
+        height: 600px;
+        width: 330px;
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        box-shadow: 0px 3px 15px rgb(21, 31, 29);
+}
 
 /* ====================
         INPUT
    ==================== */
+#inputContainer {
+        height: 150px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        overflow-x: auto;
+}
 
+/*#inputContainer::-webkit-scrollbar{
+        display: none; 
+        Oculta la barra de desplazamiento y mantiene su funcionalidad
+}*/
+input {
+        /*Para quitar el fondo al input*/
+        all: unset;
+        color: dimgray;
+        position: absolute;
+        right: 35px;
+        bottom: 60px;
+        /*El texto debe seguir alineado a la derecha al introducir valores*/
+        text-align: right;
+        font-size: 25px;
+}
+
+#result {
+        color: whitesmoke;
+        font-size: 40px;
+        position: absolute;
+        bottom: 0;
+        right: 35px;
+}
 
 /* ====================
         BUTTONS
    ==================== */
+#buttonsContainer {
+        position: absolute;
+        left: 0;
+        top: 200px;
+        width: 100%;
+        padding: 8%;
+}
+
+.button,
+.buttonAction,
+.buttonOperation {
+        width: 60px;
+        height: 60px;
+        color: whitesmoke;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 20px;
+        float: left;
+
+}
+
+.button {
+        background-color: black;
+        box-shadow: 0px 3px 15px rgba(2, 2, 2, 0.1);
+        box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
+}
+
+.buttonAction {
+        background: #343434;
+        font-size: 17px;
+}
+
+.buttonOperation {
+        background: #0b92e0;
+}
+
+#equal {
+        width: 130px;
+        background-color: #0c62d2;
+}
+
+::selection {
+        /*Texto seleccionado*/
+        background: rgba(10, 179, 241, 0.5);
+        color: #222;
+}
 
 /*----- IDEA -----*/
 /* blinking cursor */
