@@ -16,8 +16,27 @@ var text = "";
 function addText(event) {
      item = event.target;
      text += "" + item.innerText;
-     console.log(text);
      inputOperation.placeholder = text;
+}
+
+/**
+ * Función para añadir el texto del botón a la pantalla
+ * @param {Event} event 
+ */
+function addOperation(event) {
+     item = event.target;
+     let lastChar = text.substring(text.length - 1);
+     console.log(lastChar);
+     console.log(isNaN(lastChar));
+
+     if (isNaN(lastChar)) {
+          backSpace();
+          text += "" + item.innerText;
+          inputOperation.placeholder = text;
+     } else {
+          text += "" + item.innerText;
+          inputOperation.placeholder = text;
+     }
 }
 
 /**
@@ -26,6 +45,8 @@ function addText(event) {
 function reset() {
      inputOperation.placeholder = 0;
      result.innerText = 0;
+     text = "";
+     result.style.color = 'whitesmoke';
 }
 
 /**
@@ -33,9 +54,32 @@ function reset() {
  * lo último que se haya escrito
  */
 function backSpace() {
-     let txt = inputOperation.placeholder;
-     txt=txt.substring(0, txt.length-1);
-     inputOperation.placeholder=txt;
+     text = text.substring(0, text.length - 1);
+     inputOperation.placeholder = text;
+}
+
+/**
+ * Función que calcula el resultado de la operación final de la entrada de datos
+ * al pulsar el botón '='
+ */
+function calculate() {
+     let op = inputOperation.placeholder;
+     let solution;
+     console.log(op);
+     try {
+          solution = eval(op);
+          console.log(solution);
+          inputOperation.placeholder += '=';
+          if (solution % 1 > 0) {
+               result.innerText = solution.toFixed(2);
+          } else {
+               result.innerText = solution;
+          }
+     } catch (err) {
+          console.log(err);
+          result.style.color = 'red';
+          result.innerText = 'ERROR';
+     }
 }
 
 /* ========================
@@ -58,6 +102,19 @@ function DOMLoaded() {
      //Evento de borrado
      let dltButton = document.getElementById('delete');
      dltButton.addEventListener('mousedown', backSpace);
+
+     //Listener para botones de operación
+     let operationButtons = document.getElementsByClassName('buttonOperation');
+     for (let opBtn of operationButtons) {
+          opBtn.addEventListener('mousedown', addOperation);
+     }
+
+     //Evento de cálculo
+     let equal = document.getElementById('equal');
+     //Le quitamos el evento de añadir el texto, para que no afecte de primeras en la operación al calcular
+     equal.removeEventListener('mousedown', addText);
+     equal.addEventListener('mousedown', calculate);
+
 }
 /* ===========================
         LLAMADA PRINCIPAL
